@@ -1,14 +1,32 @@
-# Screenshot Checklist
+# Screenshot Inventory
 
-This folder is reserved for future portfolio visuals. Do not include private dashboards, customer data, real incidents, production hostnames, secrets, or live infrastructure details.
+This folder contains sanitized portfolio screenshots for the ACRO showcase. Do not include private dashboards, customer data, real incidents, production hostnames, secrets, credentials, API keys, or live infrastructure details.
 
-Recommended future images:
+## Included
 
-- `dashboard-overview.png`
-- `agent-triage-panel.png`
+- `acro-dashboard.png` - mission control dashboard
+- `acro-investigation-1.png` - investigation case overview
+- `acro-investigation-2.png` - entity graph, timeline, evidence, and notes
+- `acro-agent.png` - agent fleet command and policy guardrails
+- `acro-risk.png` - risk dashboard and attack-path prioritization
+- `acro-assets.png` - asset inventory
+- `acro-integrations.png` - security integration inventory
+- `acro-supplychain.png` - supply-chain risk and vulnerability inventory
+
+## Recommended Future Images
+
 - `response-approval-queue.png`
-- `blast-radius-graph.png`
-- `audit-receipt.png`
 - `policy-decision-view.png`
+- `audit-receipt.png`
+- `detection-engineering-rule-detail.png`
+- `blast-radius-graph.png`
+- `playbook-execution-rollback.png`
+- `agent-triage-panel.png`
 
-Before publishing screenshots, verify that every visible tenant, user, host, IP address, finding, and action is synthetic or intentionally sanitized.
+## Pre-Publish Checklist
+
+- Every visible tenant, user, host, IP address, finding, and action is synthetic or intentionally sanitized.
+- No browser URL bar exposes private project names, localhost tokens, query secrets, or auth callbacks.
+- No real customer, employer, employee, incident, infrastructure, or ticket data appears.
+- No API keys, credentials, session identifiers, cloud account IDs, or secrets appear.
+- Captions describe the product/design purpose without claiming production deployment readiness.

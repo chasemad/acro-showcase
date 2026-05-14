@@ -46,11 +46,12 @@ For a technical reviewer, start here:
 
 1. Read this README for the project overview.
 2. Review [docs/architecture.md](docs/architecture.md) for the data plane, control plane, reasoning plane, governance plane, and audit plane.
-3. Review [docs/agent-workflow.md](docs/agent-workflow.md) for the AI-assisted agent boundary.
-4. Review [docs/detection-and-correlation.md](docs/detection-and-correlation.md) for normalized events, correlation logic, severity scoring, and ATT&CK mapping.
-5. Review [docs/response-governance.md](docs/response-governance.md) for suggest, simulate, policy-check, approve, execute, verify, rollback, and audit.
-6. Review [docs/blast-radius-analysis.md](docs/blast-radius-analysis.md) for graph-based blast-radius reasoning.
-7. Review [docs/lessons-learned.md](docs/lessons-learned.md) for tradeoffs, design decisions, and future improvements.
+3. Review [docs/screenshot-tour.md](docs/screenshot-tour.md) for a visual walkthrough of the demo interface.
+4. Review [docs/agent-workflow.md](docs/agent-workflow.md) for the AI-assisted agent boundary.
+5. Review [docs/detection-and-correlation.md](docs/detection-and-correlation.md) for normalized events, correlation logic, severity scoring, and ATT&CK mapping.
+6. Review [docs/response-governance.md](docs/response-governance.md) for suggest, simulate, policy-check, approve, execute, verify, rollback, and audit.
+7. Review [docs/blast-radius-analysis.md](docs/blast-radius-analysis.md) for graph-based blast-radius reasoning.
+8. Review [docs/lessons-learned.md](docs/lessons-learned.md) for tradeoffs, design decisions, and future improvements.
 
 ## Feature Areas
 
@@ -63,6 +64,45 @@ For a technical reviewer, start here:
 | Response Governance | Agent proposals routed through policy checks, approval gates, scoped execution, and rollback planning |
 | Blast-Radius Analysis | Graph-style reasoning over affected users, hosts, cloud resources, trust paths, and business impact |
 | Auditability | Evidence references, policy decisions, approval status, execution outcome, rollback notes, and immutable receipts |
+| Asset and Integration Visibility | Inventory, connector status, data sources, and operational coverage context |
+| Supply Chain Security | Vendor risk, SBOM-style inventory, vulnerability severity, and remediation status |
+
+## Product Screenshots
+
+These screenshots use sanitized demo data from the ACRO interface. See the full [screenshot tour](docs/screenshot-tour.md) for additional views and reviewer notes.
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Mission Control Dashboard</strong><br/>
+      <img src="assets/screenshots/acro-dashboard.png" alt="ACRO Mission Control dashboard showing risk posture, incidents, live alerts, governed agents, and control plane status"/>
+    </td>
+    <td width="50%">
+      <strong>Investigation Workspace</strong><br/>
+      <img src="assets/screenshots/acro-investigation-1.png" alt="ACRO investigation workspace showing case summary, working hypothesis, confirmed findings, ATT&CK mapping, and safe next actions"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Entity Graph And Evidence Review</strong><br/>
+      <img src="assets/screenshots/acro-investigation-2.png" alt="ACRO investigation graph showing entity pivots, correlated events, evidence notes, and recommended next action"/>
+    </td>
+    <td width="50%">
+      <strong>Agent Fleet Command</strong><br/>
+      <img src="assets/screenshots/acro-agent.png" alt="ACRO agent fleet command showing agent health, autonomy level, confidence, tool call waterfall, and policy guardrails"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Risk Dashboard</strong><br/>
+      <img src="assets/screenshots/acro-risk.png" alt="ACRO risk dashboard showing risk score, trend, financial impact simulator, what-if scenarios, and attack paths"/>
+    </td>
+    <td width="50%">
+      <strong>Security Integrations</strong><br/>
+      <img src="assets/screenshots/acro-integrations.png" alt="ACRO integrations screen showing EDR, SIEM, IAM, CSPM, SOAR, and ticketing connector status"/>
+    </td>
+  </tr>
+</table>
 
 ## Example Artifacts
 
@@ -82,6 +122,7 @@ For a technical reviewer, start here:
 ├── README.md
 ├── docs/
 │   ├── architecture.md
+│   ├── screenshot-tour.md
 │   ├── agent-workflow.md
 │   ├── detection-and-correlation.md
 │   ├── response-governance.md
@@ -123,7 +164,15 @@ For a technical reviewer, start here:
 │   │   ├── audit-trail-flow.svg
 │   │   └── investigation-workspace-flow.svg
 │   └── screenshots/
-│       └── README.md
+│       ├── README.md
+│       ├── acro-agent.png
+│       ├── acro-assets.png
+│       ├── acro-dashboard.png
+│       ├── acro-integrations.png
+│       ├── acro-investigation-1.png
+│       ├── acro-investigation-2.png
+│       ├── acro-risk.png
+│       └── acro-supplychain.png
 ├── SECURITY.md
 └── LICENSE
 ```
