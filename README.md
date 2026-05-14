@@ -26,88 +26,7 @@ All examples use sanitized demo data, fake tenants, fake assets, fake users, and
 
 ## Architecture Overview
 
-```mermaid
-flowchart LR
-    subgraph Sources["Telemetry Sources"]
-        Endpoint["Endpoint Signals<br/>process, file, network"]
-        Identity["Identity Events<br/>login, MFA, session"]
-        Cloud["Cloud Control Plane<br/>IAM, audit, resource changes"]
-        SaaS["SaaS Activity<br/>admin actions, data access"]
-    end
-
-    subgraph Ingest["Event Ingestion & Normalization"]
-        Collectors["Collectors<br/>OpenTelemetry-style"]
-        Normalize["Normalize<br/>OCSF-style contract"]
-        Enrich["Enrich<br/>tenant, asset, user, intel"]
-        Bus[("Normalized Event Bus<br/>Kafka / Redpanda concept")]
-    end
-
-    subgraph Detection["Detection & Correlation"]
-        Rules["Sigma-Style Rules"]
-        Correlator["Correlation Engine<br/>identity + host + cloud"]
-        Scoring["Severity + Blast Radius<br/>risk scoring"]
-        Workspace["Incident Workspace<br/>timeline, entities, evidence"]
-    end
-
-    subgraph Agents["Agentic Triage Layer"]
-        DetectionAgent["Detection Agent<br/>explain match"]
-        TriageAgent["Triage Agent<br/>summarize evidence"]
-        ResponseAgent["Response Recommendation Agent<br/>draft proposal"]
-        Proposal["Structured Agent Proposal<br/>action, evidence, rollback"]
-    end
-
-    subgraph Governance["Governance & Policy Layer"]
-        Policy{{"OPA / Rego Policy Check"}}
-        Approval{"Human Approval<br/>required?"}
-        Queue["Approval Queue<br/>analyst review"]
-        Decision["Policy Decision<br/>allow, deny, escalate"]
-    end
-
-    subgraph Response["Response Execution Layer"]
-        Playbook[["SOAR / Playbook Execution"]]
-        Actuator["Scoped Actuator<br/>identity, endpoint, cloud"]
-        Verify["Verification + Rollback<br/>prove outcome or revert"]
-    end
-
-    subgraph Audit["Audit & Evidence Layer"]
-        EvidenceVault[("Evidence Vault<br/>raw refs + parsed context")]
-        Receipt[/"Immutable Audit Receipt<br/>decision + outcome"/]
-    end
-
-    Endpoint --> Collectors
-    Identity --> Collectors
-    Cloud --> Collectors
-    SaaS --> Collectors
-    Collectors --> Normalize --> Enrich --> Bus
-    Bus --> Rules --> Correlator --> Scoring --> Workspace
-    Bus --> EvidenceVault
-    Workspace --> DetectionAgent --> TriageAgent --> ResponseAgent --> Proposal
-    EvidenceVault --> TriageAgent
-    Proposal --> Policy --> Decision
-    Decision --> Approval
-    Approval -- "no" --> Playbook
-    Approval -- "yes" --> Queue --> Playbook
-    Decision -- "deny" --> Receipt
-    Playbook --> Actuator --> Verify --> Receipt
-    Policy --> Receipt
-    EvidenceVault --> Receipt
-
-    classDef source fill:#e0f2fe,stroke:#0369a1,color:#0c4a6e
-    classDef ingest fill:#dcfce7,stroke:#15803d,color:#14532d
-    classDef detect fill:#fef3c7,stroke:#b45309,color:#78350f
-    classDef agent fill:#ede9fe,stroke:#7c3aed,color:#3b0764
-    classDef govern fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
-    classDef response fill:#cffafe,stroke:#0891b2,color:#164e63
-    classDef audit fill:#f1f5f9,stroke:#475569,color:#0f172a
-
-    class Endpoint,Identity,Cloud,SaaS source
-    class Collectors,Normalize,Enrich,Bus ingest
-    class Rules,Correlator,Scoring,Workspace detect
-    class DetectionAgent,TriageAgent,ResponseAgent,Proposal agent
-    class Policy,Approval,Queue,Decision govern
-    class Playbook,Actuator,Verify response
-    class EvidenceVault,Receipt audit
-```
+![ACRO Reference Architecture](assets/diagrams/reference-architecture.svg)
 
 Additional visual walkthroughs:
 
@@ -115,8 +34,11 @@ Additional visual walkthroughs:
 - [Agent decision flow](diagrams/agent-decision-flow.md)
 - [Response governance flow](diagrams/response-governance-flow.md)
 - [Blast radius flow](diagrams/blast-radius-flow.md)
+- [Evidence pipeline](diagrams/evidence-pipeline.md)
+- [Policy engine overview](diagrams/policy-engine-overview.md)
 - [Event correlation flow](diagrams/event-correlation-flow.md)
 - [Audit trail flow](diagrams/audit-trail-flow.md)
+- [Investigation workspace flow](diagrams/investigation-workspace-flow.md)
 
 ## Recommended Reading Path
 
@@ -170,8 +92,11 @@ For a technical reviewer, start here:
 │   ├── agent-decision-flow.md
 │   ├── response-governance-flow.md
 │   ├── blast-radius-flow.md
+│   ├── evidence-pipeline.md
+│   ├── policy-engine-overview.md
 │   ├── event-correlation-flow.md
-│   └── audit-trail-flow.md
+│   ├── audit-trail-flow.md
+│   └── investigation-workspace-flow.md
 ├── examples/
 │   ├── detections/
 │   │   ├── suspicious-admin-escalation.yml
@@ -187,6 +112,16 @@ For a technical reviewer, start here:
 │   └── audit/
 │       └── sample-audit-receipt.json
 ├── assets/
+│   ├── diagrams/
+│   │   ├── reference-architecture.svg
+│   │   ├── agent-decision-flow.svg
+│   │   ├── response-governance-flow.svg
+│   │   ├── blast-radius-flow.svg
+│   │   ├── evidence-pipeline.svg
+│   │   ├── policy-engine-overview.svg
+│   │   ├── event-correlation-flow.svg
+│   │   ├── audit-trail-flow.svg
+│   │   └── investigation-workspace-flow.svg
 │   └── screenshots/
 │       └── README.md
 ├── SECURITY.md
