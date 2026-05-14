@@ -13,16 +13,6 @@ This folder contains sanitized portfolio screenshots for the ACRO showcase. Do n
 - `acro-integrations.png` - security integration inventory
 - `acro-supplychain.png` - supply-chain risk and vulnerability inventory
 
-## Recommended Future Images
-
-- `response-approval-queue.png`
-- `policy-decision-view.png`
-- `audit-receipt.png`
-- `detection-engineering-rule-detail.png`
-- `blast-radius-graph.png`
-- `playbook-execution-rollback.png`
-- `agent-triage-panel.png`
-
 ## Pre-Publish Checklist
 
 - Every visible tenant, user, host, IP address, finding, and action is synthetic or intentionally sanitized.
@@ -30,3 +20,7 @@ This folder contains sanitized portfolio screenshots for the ACRO showcase. Do n
 - No real customer, employer, employee, incident, infrastructure, or ticket data appears.
 - No API keys, credentials, session identifiers, cloud account IDs, or secrets appear.
 - Captions describe the product/design purpose without claiming production deployment readiness.
+
+## Coming Soon
+
+Optional future captures: response approval, policy decision, audit receipt, detection detail, and playbook rollback.

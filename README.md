@@ -51,7 +51,7 @@ For a technical reviewer, start here:
 5. Review [docs/detection-and-correlation.md](docs/detection-and-correlation.md) for normalized events, correlation logic, severity scoring, and ATT&CK mapping.
 6. Review [docs/response-governance.md](docs/response-governance.md) for suggest, simulate, policy-check, approve, execute, verify, rollback, and audit.
 7. Review [docs/blast-radius-analysis.md](docs/blast-radius-analysis.md) for graph-based blast-radius reasoning.
-8. Review [docs/lessons-learned.md](docs/lessons-learned.md) for tradeoffs, design decisions, and future improvements.
+8. Review [docs/lessons-learned.md](docs/lessons-learned.md) for tradeoffs and design decisions.
 
 ## Feature Areas
 

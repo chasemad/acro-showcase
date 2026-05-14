@@ -51,14 +51,3 @@ The integrations view shows how ACRO could represent EDR, SIEM, IAM, CSPM, SOAR,
 ![ACRO supply chain security](../assets/screenshots/acro-supplychain.png)
 
 The supply-chain view shows vendor risk, SBOM-style package inventory, vulnerability severity, CVSS scoring, and remediation status.
-
-## Recommended Additional Screenshots
-
-The current set is strong for a recruiter-facing overview. The main gaps to fill next are response governance and auditability:
-
-- Response approval queue showing a proposed action, risk reason, evidence references, approval controls, and rollback summary.
-- Policy decision view showing allow, deny, or require-approval output from a Rego-style policy check.
-- Audit receipt view showing proposal, reviewer, policy result, evidence refs, execution status, and verification result.
-- Detection engineering view showing a Sigma-style rule, ATT&CK tags, test results, and false-positive notes.
-- Blast-radius graph or modal focused specifically on affected users, endpoints, cloud resources, and response impact.
-- Playbook execution view showing pre-checks, execution steps, verification, and rollback status.
