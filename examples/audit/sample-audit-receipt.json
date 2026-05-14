@@ -1,0 +1,42 @@
+{
+  "action_id": "action-demo-0001",
+  "tenant_id": "tenant-demo-acro",
+  "proposed_by": {
+    "type": "agent",
+    "id": "response-recommendation-agent-demo",
+    "display_name": "Response Recommendation Agent"
+  },
+  "policy_result": {
+    "effect": "require_approval",
+    "policy_package": "acro.governance.response",
+    "policy_version": "demo-policy-v0.1",
+    "reason": "high-risk action requires manual approval above risk threshold"
+  },
+  "approval_status": {
+    "state": "approved",
+    "approved_by": "analyst.demo@example.test",
+    "approved_at": "2026-05-14T08:47:22Z"
+  },
+  "evidence_refs": [
+    "evidence://tenant-demo-acro/auth/event-1001",
+    "evidence://tenant-demo-acro/identity/event-1002",
+    "evidence://tenant-demo-acro/graph/path-0042"
+  ],
+  "rollback_plan": {
+    "exists": true,
+    "summary": "Remove temporary access restriction and require fresh MFA re-authentication if session revocation creates unintended access impact.",
+    "owner": "soc-demo-team"
+  },
+  "execution_status": {
+    "state": "completed",
+    "playbook": "revoke-user-session",
+    "target": {
+      "type": "identity",
+      "id": "user-demo-001",
+      "name": "admin.demo@example.test"
+    },
+    "verification": "passed",
+    "rollback_required": false
+  },
+  "timestamp": "2026-05-14T08:49:03Z"
+}

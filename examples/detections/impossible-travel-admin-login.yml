@@ -1,0 +1,36 @@
+title: Impossible Travel Admin Login
+id: acro-demo-detection-002
+status: experimental
+description: Detects a synthetic privileged login from geographically distant locations within a short time window.
+logsource:
+  product: acro-demo
+  service: identity
+  category: authentication
+detection:
+  selection_admin_login:
+    event.category: identity
+    event.type: user_login
+    actor.user.privilege: elevated
+    authentication.result: success
+  selection_travel:
+    geo.velocity_kph|gte: 900
+    src_endpoint.ip.reputation:
+      - unknown
+      - suspicious
+  filter_trusted_access:
+    src_endpoint.network.name:
+      - trusted-vpn-demo
+      - managed-travel-proxy-demo
+  condition: selection_admin_login and selection_travel and not filter_trusted_access
+falsepositives:
+  - Corporate VPN egress changes
+  - Managed travel proxy usage
+  - Shared test accounts in a lab
+  - GeoIP database inaccuracy
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1550
+  - attack.initial_access
+  - attack.defense_evasion
+  - acro.identity

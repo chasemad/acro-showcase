@@ -1,0 +1,42 @@
+name: revoke-user-session
+version: "0.1"
+description: Sanitized playbook for revoking active sessions for a demo identity after suspicious privileged activity.
+required_approvals:
+  minimum_reviewers: 1
+  required_for:
+    - privileged_identity
+    - risk_score_gte_70
+pre_checks:
+  - confirm tenant_id is present
+  - confirm target user exists in the identity provider inventory
+  - confirm evidence references are attached
+  - confirm rollback plan is documented
+  - confirm the action is limited to the target demo identity
+steps:
+  - id: prepare-action
+    description: Create a scoped session revocation request for the target identity.
+  - id: policy-check
+    description: Submit the request to the response approval policy.
+  - id: revoke-active-sessions
+    description: Revoke active sessions for the target demo identity through the approved identity actuator.
+  - id: notify-analyst
+    description: Attach the action result to the incident workspace for analyst review.
+verification:
+  - confirm active session count for the target identity is zero
+  - confirm new authentication attempts require fresh MFA
+  - confirm no unrelated identities were affected
+rollback:
+  - note: Session revocation cannot restore prior tokens. Rollback is limited to removing temporary restrictions or restoring configuration changes made during execution.
+  - step: Remove any temporary conditional access block created for the target identity.
+  - step: Notify the analyst if user re-authentication is required.
+audit_fields:
+  - action_id
+  - tenant_id
+  - target_user_id
+  - proposed_by
+  - approval_status
+  - policy_result
+  - evidence_refs
+  - execution_status
+  - verification_status
+  - timestamp

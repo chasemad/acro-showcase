@@ -1,0 +1,72 @@
+{
+  "event_id": "evt-demo-finding-0001",
+  "tenant_id": "tenant-demo-acro",
+  "time": "2026-05-14T08:42:15Z",
+  "event": {
+    "category": "finding",
+    "type": "correlated_identity_risk",
+    "severity": "high",
+    "confidence": 0.82
+  },
+  "finding": {
+    "id": "finding-demo-0001",
+    "title": "Suspicious admin escalation after impossible travel",
+    "description": "A privileged login from an unusual location was followed by an admin role assignment for the same identity.",
+    "status": "open",
+    "risk_score": 78,
+    "attack_mappings": [
+      {
+        "framework": "MITRE ATT&CK",
+        "technique_id": "T1078",
+        "technique_name": "Valid Accounts"
+      },
+      {
+        "framework": "MITRE ATT&CK",
+        "technique_id": "T1098",
+        "technique_name": "Account Manipulation"
+      }
+    ]
+  },
+  "actor": {
+    "user": {
+      "uid": "user-demo-001",
+      "name": "admin.demo@example.test",
+      "privilege": "elevated"
+    }
+  },
+  "src_endpoint": {
+    "ip": "203.0.113.42",
+    "hostname": "unknown-demo-device",
+    "geo": {
+      "country": "Exampleland",
+      "city": "Demo City"
+    }
+  },
+  "affected_entities": [
+    {
+      "type": "identity",
+      "id": "user-demo-001",
+      "name": "admin.demo@example.test"
+    },
+    {
+      "type": "endpoint",
+      "id": "host-demo-01",
+      "name": "host-demo-01"
+    },
+    {
+      "type": "cloud_resource",
+      "id": "cloud-resource-demo-01",
+      "name": "demo-sensitive-storage"
+    }
+  ],
+  "evidence_refs": [
+    "evidence://tenant-demo-acro/auth/event-1001",
+    "evidence://tenant-demo-acro/identity/event-1002",
+    "evidence://tenant-demo-acro/graph/path-0042"
+  ],
+  "response_recommendation": {
+    "action_type": "identity.revoke_sessions",
+    "requires_approval": true,
+    "rollback_plan_ref": "rollback://tenant-demo-acro/session-revoke-demo"
+  }
+}

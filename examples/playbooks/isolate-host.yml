@@ -1,0 +1,47 @@
+name: isolate-host
+version: "0.1"
+description: Sanitized playbook for isolating a single demo endpoint after policy approval and blast-radius review.
+required_approvals:
+  minimum_reviewers: 1
+  required_for:
+    - endpoint_isolation
+    - production_like_asset
+    - risk_score_gte_70
+pre_checks:
+  - confirm tenant_id is present
+  - confirm target host exists in the asset inventory
+  - confirm the host is not excluded by a critical-service policy
+  - confirm evidence references are attached
+  - confirm rollback plan is documented
+  - confirm blast-radius analysis has been reviewed
+steps:
+  - id: prepare-action
+    description: Create a scoped endpoint isolation proposal for the target host only.
+  - id: policy-check
+    description: Submit the proposal to the response approval policy.
+  - id: isolate-host
+    description: Execute host isolation through the approved endpoint actuator.
+  - id: collect-post-action-state
+    description: Capture current isolation status and active network reachability checks.
+verification:
+  - confirm host isolation status is enabled
+  - confirm the host can no longer initiate non-management network traffic
+  - confirm management access remains available for recovery
+  - confirm no additional hosts were isolated
+rollback:
+  - step: Remove endpoint isolation from the target host after analyst approval.
+  - step: Confirm host network connectivity returns to the expected managed state.
+  - step: Re-open the incident if suspicious activity resumes after rollback.
+audit_fields:
+  - action_id
+  - tenant_id
+  - target_host_id
+  - proposed_by
+  - approval_status
+  - policy_result
+  - blast_radius_score
+  - evidence_refs
+  - execution_status
+  - verification_status
+  - rollback_status
+  - timestamp

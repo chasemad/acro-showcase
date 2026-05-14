@@ -1,0 +1,39 @@
+title: Suspicious Admin Privilege Escalation
+id: acro-demo-detection-001
+status: experimental
+description: Detects a synthetic privileged role assignment that occurs shortly after unusual identity activity for the same user.
+logsource:
+  product: acro-demo
+  service: identity
+  category: iam
+detection:
+  selection_role_change:
+    event.category: identity
+    event.type:
+      - group_member_added
+      - role_assignment_created
+    target.role.name:
+      - Global Administrator
+      - Cloud Administrator
+      - Privileged Access Administrator
+  selection_actor:
+    actor.user.type:
+      - user
+      - service_account
+    actor.user.privilege: elevated
+  filter_known_change:
+    change.ticket_id|exists: true
+    change.approved: true
+  condition: selection_role_change and selection_actor and not filter_known_change
+falsepositives:
+  - Scheduled identity administration
+  - Help desk account recovery
+  - Approved break-glass access test
+  - Identity provider migration or role cleanup
+level: high
+tags:
+  - attack.t1078
+  - attack.t1098
+  - attack.persistence
+  - attack.privilege_escalation
+  - acro.identity
