@@ -1,8 +1,8 @@
 # ACRO Showcase
 
-**Topics:** `cybersecurity` `soar` `detection-engineering` `mitre-attack` `ai-security` `security-automation` `incident-response` `rego` `sigma-rules` `graph-security`
+**Topics:** `cybersecurity` `xdr` `soar` `autonomous-response` `detection-engineering` `mitre-attack` `ai-security` `ai-agents` `security-automation` `incident-response` `policy-as-code` `rego` `sigma-rules` `graph-security`
 
-ACRO is a sanitized cybersecurity portfolio project demonstrating the architecture, detection logic, and response workflows behind an AI-assisted autonomous cyber response platform.
+ACRO is a cybersecurity portfolio project demonstrating the architecture, detection logic, and response workflows behind an AI-assisted autonomous cyber response platform.
 
 This repository is designed for recruiters, SOC managers, detection engineers, and security automation teams. It highlights multi-agent triage, event correlation, policy-governed remediation, blast-radius analysis, approval workflows, rollback planning, and immutable auditability without exposing private source code, secrets, infrastructure internals, or sensitive implementation details.
 
