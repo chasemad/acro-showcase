@@ -1,8 +1,12 @@
 # ACRO Showcase
 
-ACRO is a cybersecurity portfolio project demonstrating the architecture, detection logic, and response workflows behind an AI-assisted autonomous cyber response platform.
+**Topics:** `cybersecurity` `soar` `detection-engineering` `mitre-attack` `ai-security` `security-automation` `incident-response` `rego` `sigma-rules` `graph-security`
+
+ACRO is a sanitized cybersecurity portfolio project demonstrating the architecture, detection logic, and response workflows behind an AI-assisted autonomous cyber response platform.
 
 This repository is designed for recruiters, SOC managers, detection engineers, and security automation teams. It highlights multi-agent triage, event correlation, policy-governed remediation, blast-radius analysis, approval workflows, rollback planning, and immutable auditability without exposing private source code, secrets, infrastructure internals, or sensitive implementation details.
+
+ACRO was built as an evolution of my earlier [Mini-XDR Showcase](https://github.com/chasemad/mini-xdr-showcase), expanding core XDR concepts into full autonomous response capabilities.
 
 ## What This Demonstrates
 
@@ -12,6 +16,17 @@ This repository is designed for recruiters, SOC managers, detection engineers, a
 - Policy-governed response using proposal objects, Rego-style policy checks, approval gates, verification, rollback planning, and audit receipts
 - Blast-radius analysis using entity relationships across identities, endpoints, cloud resources, findings, and evidence
 - Product and engineering judgment through documented tradeoffs, non-goals, and safety boundaries
+
+## My Contributions
+
+| Area | What I Designed / Built | Why It Matters |
+|---|---|---|
+| Governed AI response architecture | I designed the core boundary where AI-assisted agents create structured proposals, while policy checks and approval gates determine what can execute. | Shows judgment around AI safety, autonomy limits, and SOC trust. |
+| Blast-radius analysis | I modeled blast-radius reasoning around relationships between identities, endpoints, cloud resources, findings, and response targets. | Demonstrates graph-based security thinking beyond static severity scores. |
+| Detection and correlation workflow | I authored Sigma-style detection examples, normalized event examples, severity mapping, ATT&CK tags, and false-positive notes. | Shows practical detection engineering and SIEM-style event reasoning. |
+| Response governance lifecycle | I documented the suggest, simulate, policy-check, approve, execute, verify, rollback, and audit flow. | Shows SOAR design with reversible actions and human oversight for high-risk changes. |
+| Auditability model | I created the sample audit receipt and evidence-chain diagrams tying findings, evidence, policy results, approvals, execution, and verification together. | Shows compliance-minded engineering and post-incident review readiness. |
+| Portfolio presentation | I built the sanitized public case study structure, diagrams, screenshots, example artifacts, and recruiter-readable documentation. | Makes the private project explainable without exposing sensitive implementation details. |
 
 ## What This Repository Does Not Include
 
